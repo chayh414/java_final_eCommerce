@@ -1,6 +1,7 @@
 package kr.co.javaex.sec23.repository;
 
 import kr.co.javaex.sec23.domain.Product;
+import kr.co.javaex.sec23.util.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 public class ProductRepository {
 
     private List<Product> productList = new ArrayList<>();
+    private JsonUtil jsonUtil = new JsonUtil();
+    private String fileName = "products.json";
 
     // 상품 등록
     public void addProduct(Product product) {

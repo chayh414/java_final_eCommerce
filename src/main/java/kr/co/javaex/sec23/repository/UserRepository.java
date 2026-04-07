@@ -1,17 +1,28 @@
 package kr.co.javaex.sec23.repository;
 
 import kr.co.javaex.sec23.domain.User;
+import kr.co.javaex.sec23.util.JsonUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserRepository {
 
     private List<User> userList = new ArrayList<>();
+    private JsonUtil jsonUtil = new JsonUtil();
+    private String fileName = "use.json";
 
-    // 회원 추가
+    public UserRepository() {
+        User[] arr = jsonUtil.load(fileName, User[].class);
+        if (arr != null) {
+            userList = new ArrayList<>(Arrays.asList(arr));
+        }
+    }
+
     public void addUser(User user) {
         userList.add(user);
+        jsonUtil.save(fileName, userList);
     }
 
     // 전체 회원 조회

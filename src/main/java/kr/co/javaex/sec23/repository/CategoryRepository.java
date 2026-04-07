@@ -1,18 +1,31 @@
 package kr.co.javaex.sec23.repository;
 
 import kr.co.javaex.sec23.domain.Category;
+import kr.co.javaex.sec23.util.JsonUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CategoryRepository {
 
     // Category 객체들을 저장할 리스트
     private List<Category> categoryList = new ArrayList<>();
+    private JsonUtil jsonUtil = new JsonUtil();
+    private String fileName = "categories.json";
+
+    // 🔥 추가: 생성자 (파일 읽기)
+    public CategoryRepository() {
+        Category[] arr = jsonUtil.load(fileName, Category[].class);
+        if (arr != null) {
+            categoryList = new ArrayList<>(Arrays.asList(arr));
+        }
+    }
 
     // 카테고리 등록
     public void addCategory(Category category) {
         categoryList.add(category);
+        jsonUtil.save(fileName, categoryList);
     }
 
     // 전체 카테고리 조회
@@ -37,6 +50,7 @@ public class CategoryRepository {
 
             if (category.getCategoryId().equals(updatedCategory.getCategoryId())) {
                 categoryList.set(i, updatedCategory);
+                jsonUtil.save(fileName, categoryList); // 🔥 추가
                 return true;
             }
         }
@@ -48,6 +62,7 @@ public class CategoryRepository {
         for (int i = 0; i < categoryList.size(); i++) {
             if (categoryList.get(i).getCategoryId().equals(categoryId)) {
                 categoryList.remove(i);
+                jsonUtil.save(fileName, categoryList); // 🔥 추가
                 return true;
             }
         }
