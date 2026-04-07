@@ -5,16 +5,14 @@ public class Category {
     private Long categoryId;
     private Long parentCategoryId;   // null이면 대분류
     private String categoryName;
-    private int sortOrder;
 
     public Category() {
     }
 
-    public Category(Long categoryId, Long parentCategoryId, String categoryName, int sortOrder) {
+    public Category(Long categoryId, Long parentCategoryId, String categoryName) {
         this.categoryId = categoryId;
         this.parentCategoryId = parentCategoryId;
         this.categoryName = categoryName;
-        this.sortOrder = sortOrder;
     }
 
     public Long getCategoryId() {
@@ -41,23 +39,12 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public int getSortOrder() {
-        return sortOrder;
-    }
-
-    public void setSortOrder(int sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
-
-
     @Override
     public String toString() {
         return "Category{" +
                 "categoryId=" + categoryId +
                 ", parentCategoryId=" + parentCategoryId +
                 ", categoryName='" + categoryName + '\'' +
-                ", sortOrder=" + sortOrder +
                 '}';
     }
 }
