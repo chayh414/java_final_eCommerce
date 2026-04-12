@@ -1,41 +1,55 @@
 package kr.co.javaex.sec23.repository;
 
 import kr.co.javaex.sec23.domain.Product;
+import kr.co.javaex.sec23.util.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepository {
-    // 1. Product 객체들을 저장할 리스트
+
     private List<Product> productList = new ArrayList<>();
+    private JsonUtil jsonUtil = new JsonUtil();
+    private String fileName = "products.json";
 
-    // 2. 상품 등록
+    // 상품 등록
     public void addProduct(Product product) {
-
         productList.add(product);
     }
 
-    // 3. 전체 상품 조회(상품 리스트 전체 보기)
+    // 전체 상품 조회
     public List<Product> getAllProducts() {
-
         return productList;
     }
 
-    // 4. 상품 찾기(특정 상품)
+    // 상품 ID로 찾기
     public Product findByProductId(Long productId) {
-        for(Product product : productList) {
-            if(product.getProductId().equals(productId)){
+        for (Product product : productList) {
+            if (product.getProductId().equals(productId)) {
                 return product;
             }
         }
-        return null;  // -> 못 찾으면 null 반환
+        return null;
     }
 
-    // 5. 상품 삭제
+    // 상품 수정
+    public boolean updateProduct(Product updatedProduct) {
+        for (int i = 0; i < productList.size(); i++) {
+            Product product = productList.get(i);
+
+            if (product.getProductId().equals(updatedProduct.getProductId())) {
+                productList.set(i, updatedProduct);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 상품 삭제
     public boolean removeProduct(Long productId) {
-        for(Product product : productList) {
-            if (product.getProductId().equals(productId)) {
-                productList.remove(product);
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getProductId().equals(productId)) {
+                productList.remove(i);
                 return true;
             }
         }

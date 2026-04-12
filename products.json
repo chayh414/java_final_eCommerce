@@ -1,0 +1,7 @@
+[
+  {"productId": 1, "productName": "흰색 반팔티", "description": "기본 흰색 반팔티입니다.", "price": 15000, "stockQuantity": 50, "status": "정상", "categoryId": 3},
+  {"productId": 2, "productName": "검정 반팔티", "description": "기본 검정 반팔티입니다.", "price": 15000, "stockQuantity": 50, "status": "정상", "categoryId": 3},
+  {"productId": 3, "productName": "줄무늬 긴팔티", "description": "줄무늬 패턴 긴팔티입니다.", "price": 22000, "stockQuantity": 30, "status": "정상", "categoryId": 3},
+  {"productId": 4, "productName": "후드 맨투맨", "description": "후드가 달린 맨투맨입니다.", "price": 35000, "stockQuantity": 20, "status": "정상", "categoryId": 3},
+  {"productId": 5, "productName": "니트 스웨터", "description": "따뜻한 니트 스웨터입니다.", "price": 45000, "stockQuantity": 15, "status": "정상", "categoryId": 3}
+]
