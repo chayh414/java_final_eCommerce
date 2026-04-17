@@ -1,22 +1,38 @@
 package kr.co.javaex.sec23;
 
+import kr.co.javaex.sec23.config.DBConfig;
 import kr.co.javaex.sec23.controller.*;
 import kr.co.javaex.sec23.domain.*;
 import kr.co.javaex.sec23.repository.*;
 import kr.co.javaex.sec23.service.*;
 import kr.co.javaex.sec23.util.JsonUtil;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+
+
+
 public class Ecommerce {
 
     public static void main(String[] args) {
 
+        // 전자지갑 연결 성공 테스트
+        Connection conn = DBConfig.getConnection();
+
+        if (conn != null) {
+            System.out.println("오라클 DB-전자지갑 연결 성공");
+        } else {
+            System.out.println("오라클 DB-전자지갑 연결 실패");
+        }
+
+
         Scanner sc = new Scanner(System.in);
-        JsonUtil jsonUtil = new JsonUtil();
+        // json 안 씀
+        //JsonUtil jsonUtil = new JsonUtil();
 
         // Repository 생성
         UserRepository userRepository = new UserRepository();
@@ -26,6 +42,8 @@ public class Ecommerce {
         OrderRepository orderRepository = new OrderRepository();
 
         // JSON 파일에서 데이터 불러오기
+        // 이젠 오라클로 바뀌니까 json 데이터 불러오는 부분은 죽이기
+        /*
         User[] users = jsonUtil.load("use.json", User[].class);
         if (users != null) {
             for (User user : users) {
@@ -60,6 +78,7 @@ public class Ecommerce {
                 orderRepository.addOrder(order);
             }
         }
+         */
 
         // Service 생성
         UserService userService = new UserService(userRepository);
@@ -115,12 +134,16 @@ public class Ecommerce {
                 categoryController.showMenu();
 
             } else if (input.equals("0")) {
+
+                // 여기도 이제 json 안쓰니까 죽이기
+                /*
                 // 종료 전 데이터 저장
                 jsonUtil.save("use.json", userRepository.getAllUsers());
                 jsonUtil.save("categories.json", categoryRepository.getAllCategories());
                 jsonUtil.save("products.json", productRepository.getAllProducts());
                 jsonUtil.save("carts.json", cartRepository.getAllCarts());
                 jsonUtil.save("orders.json", orderRepository.getAllOrders());
+                 */
 
                 System.out.println("데이터를 저장하고 종료합니다.");
                 break;
